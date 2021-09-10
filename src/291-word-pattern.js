@@ -30,22 +30,31 @@ const wordPattern2 = function (pattern, s) {
 const wordPattern = function (pattern, s) {
   const hashPattern = {};
   const wordPattern = {};
-
   const tokens = s.split(' ');
+  if (pattern.length !== tokens.length) {
+    return false;
+  }
 
   for (let i = 0; i < pattern.length; i++) {
-    if (hashPattern[pattern[i]] === undefined) {
+    if (hashPattern[pattern[i]] !== undefined) {
+      if (wordPattern[tokens[i]] !== pattern[i]) {
+        return false;
+      }
+    } else {
+      // No existe, crearlo
       hashPattern[pattern[i]] = tokens[i];
-      wordPattern[tokens[i]] = pattern[i];
+      if (wordPattern[tokens[i]] !== undefined) {
+        // La palabra existe
+        if (wordPattern[tokens[i]] !== pattern[i]) {
+          return false;
+        }
+      } else {
+        // No existe, crearla
+        wordPattern[tokens[i]] = pattern[i];
+      }
     }
   }
-  console.log(hashPattern);
-  console.log(wordPattern);
-
-  // Create from pattern
-  for (let j = 0; j < pattern.length; j++) {
-    const element = pattern[j];
-  }
+  return true;
 };
 
 function test(result, objective) {
