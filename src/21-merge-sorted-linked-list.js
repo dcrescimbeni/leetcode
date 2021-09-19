@@ -1,5 +1,6 @@
 // NOT SOLVED
 // COPIED BEST COMMENTS SOLUTION
+// https://leetcode.com/problems/fizz-buzz/discuss/540997/javascript-with-linked-lists
 
 function ListNode(val) {
   this.val = val;
